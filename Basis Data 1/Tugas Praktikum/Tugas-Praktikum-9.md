@@ -3,229 +3,320 @@
 
 ---
 
-## a) Membuat Database dan Tabel Mahasiswa
+## a) Buat Struktur Database `penjualan` dan Tabel `buku`
+
+Ketik perintah berikut di MySQL:
 
 ```sql
-CREATE DATABASE univ;
-USE univ;
+CREATE DATABASE penjualan;
+USE penjualan;
 
-CREATE TABLE mahasiswa (
-  nim VARCHAR(10),
-  nama VARCHAR(30),
-  jurusan VARCHAR(30),
-  alamat VARCHAR(50),
-  PRIMARY KEY(nim)
-);
-
-DESC mahasiswa;
-```
-
----
-
-## b) Menambahkan Data ke Tabel Mahasiswa
-
-```sql
-INSERT INTO mahasiswa VALUES ('1234567890', 'Adi Nugroho', 'Teknik Informatika', 'Tangerang');
-INSERT INTO mahasiswa VALUES ('1234567891', 'Budi Santoso', 'Sistem Informasi', 'Jakarta');
-INSERT INTO mahasiswa VALUES ('1234567892', 'Citra Dewi', 'Teknik Informatika', 'Bekasi');
-INSERT INTO mahasiswa VALUES ('1234567893', 'Doni Pratama', 'Sistem Informasi', 'Depok');
-INSERT INTO mahasiswa VALUES ('1234567894', 'Eka Putri', 'Teknik Informatika', 'Bogor');
-```
-
-**Data Tabel Mahasiswa:**
-| nim        | nama          | jurusan              | alamat     |
-|------------|---------------|----------------------|------------|
-| 1234567890 | Adi Nugroho   | Teknik Informatika   | Tangerang  |
-| 1234567891 | Budi Santoso  | Sistem Informasi     | Jakarta    |
-| 1234567892 | Citra Dewi    | Teknik Informatika   | Bekasi     |
-| 1234567893 | Doni Pratama  | Sistem Informasi     | Depok      |
-| 1234567894 | Eka Putri     | Teknik Informatika   | Bogor      |
-
----
-
-## c) Menampilkan Data Jurusan dengan DISTINCT
-
-Menampilkan jurusan yang berbeda (tanpa duplikasi):
-
-```sql
-SELECT DISTINCT jurusan FROM mahasiswa;
-```
-
-**Output:**
-| jurusan              |
-|----------------------|
-| Teknik Informatika   |
-| Sistem Informasi     |
-
----
-
-## d) Membuat Tabel Buku dengan Stok
-
-```sql
 CREATE TABLE buku (
-  isbn INT,
-  judul VARCHAR(50),
-  pengarang VARCHAR(30),
-  penerbit VARCHAR(30),
-  harga INT,
-  stok INT,
+  isbn VARCHAR(15),
+  judul CHAR(20),
+  pengarang CHAR(30),
+  harga VARCHAR(15),
+  stok CHAR(10),
   PRIMARY KEY(isbn)
 );
 
-INSERT INTO buku VALUES (2001145, 'IPS Terpadu', 'Tim Guru', 'Erlangga', 54000, 10);
-INSERT INTO buku VALUES (2005666, 'Cerdas Berbahasa', 'Srikanti', 'KompasMedia', 60000, 8);
-INSERT INTO buku VALUES (2007575, 'Teknik Industri', 'Suryanto', 'Penerbit Andi', 50000, 12);
-INSERT INTO buku VALUES (2000698, 'Akuntansi Lanjut', 'Tonikurnia', 'Graha Ilmu', 40000, 15);
-INSERT INTO buku VALUES (2000543, 'Good English', 'Michael R', 'ElexMedia', 45000, 20);
-INSERT INTO buku VALUES (2054449, 'Kimia Dasar', 'Michael Purba', 'Erlangga', 60000, 5);
+DESC buku;
+```
+
+**Output DESC buku:**
+```
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| isbn     | varchar(15) | NO   | PRI | NULL    |       |
+| judul    | char(20)    | YES  |     | NULL    |       |
+| pengarang| char(30)    | YES  |     | NULL    |       |
+| harga    | varchar(15) | YES  |     | NULL    |       |
+| stok     | char(10)    | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+```
+
+---
+
+## b) Tambahkan Data ke Tabel `buku`
+
+Ketik perintah berikut:
+
+```sql
+INSERT INTO buku VALUES ('11231', 'Matematika Diskrit', 'Hanafi', '60000', '25');
+INSERT INTO buku VALUES ('11232', 'Pintar Java', 'Median', '50000', '20');
+INSERT INTO buku VALUES ('11233', 'Struktur Data', 'Andrianto', '70000', '15');
+INSERT INTO buku VALUES ('11234', 'Algoritma', 'SintaSari', '45000', '16');
+INSERT INTO buku VALUES ('11235', 'Kewarganegaraan', 'Ramdani', '64000', '22');
+INSERT INTO buku VALUES ('11236', 'Basisdata', 'Suginanto', '46000', '33');
+INSERT INTO buku VALUES ('11237', 'Sistem Berkas', 'Suginanto', '60000', '20');
+INSERT INTO buku VALUES ('11238', 'Web PHP', 'Median', '50000', '25');
 ```
 
 **Data Tabel Buku:**
-| isbn    | judul              | pengarang     | penerbit       | harga  | stok |
-|---------|--------------------|---------------|----------------|--------|------|
-| 2001145 | IPS Terpadu        | Tim Guru      | Erlangga       | 54000  | 10   |
-| 2005666 | Cerdas Berbahasa   | Srikanti      | KompasMedia    | 60000  | 8    |
-| 2007575 | Teknik Industri    | Suryanto      | Penerbit Andi  | 50000  | 12   |
-| 2000698 | Akuntansi Lanjut   | Tonikurnia    | Graha Ilmu     | 40000  | 15   |
-| 2000543 | Good English       | Michael R     | ElexMedia      | 45000  | 20   |
-| 2054449 | Kimia Dasar        | Michael Purba | Erlangga       | 60000  | 5    |
+| isbn  | judul              | pengarang  | harga | stok |
+|-------|--------------------|------------|-------|------|
+| 11231 | Matematika Diskrit | Hanafi     | 60000 | 25   |
+| 11232 | Pintar Java        | Median     | 50000 | 20   |
+| 11233 | Struktur Data      | Andrianto  | 70000 | 15   |
+| 11234 | Algoritma          | SintaSari  | 45000 | 16   |
+| 11235 | Kewarganegaraan    | Ramdani    | 64000 | 22   |
+| 11236 | Basisdata          | Suginanto  | 46000 | 33   |
+| 11237 | Sistem Berkas      | Suginanto  | 60000 | 20   |
+| 11238 | Web PHP            | Median     | 50000 | 25   |
 
 ---
 
-## e) Menggunakan Operator Aritmatika
+## c) Menampilkan Data dengan DISTINCT (Pengarang)
 
-Menampilkan harga buku setelah diskon 10%:
+Ketik perintah berikut:
 
 ```sql
-SELECT judul, harga, (harga * 0.9) AS harga_setelah_diskon FROM buku;
+SELECT DISTINCT pengarang FROM buku;
 ```
 
 **Output:**
-| judul              | harga | harga_setelah_diskon |
-|--------------------|-------|----------------------|
-| IPS Terpadu        | 54000 | 48600                |
-| Cerdas Berbahasa   | 60000 | 54000                |
-| Teknik Industri    | 50000 | 45000                |
-| Akuntansi Lanjut   | 40000 | 36000                |
-| Good English       | 45000 | 40500                |
-| Kimia Dasar        | 60000 | 54000                |
+```
++------------+
+| pengarang  |
++------------+
+| Hanafi     |
+| Median     |
+| Andrianto  |
+| SintaSari  |
+| Ramdani    |
+| Suginanto  |
++------------+
+```
 
 ---
 
-## f) Menggunakan Fungsi Aritmatika Built-in
+## d) Menampilkan Data dengan DISTINCT (Harga)
+
+Ketik perintah berikut:
 
 ```sql
-SELECT ROUND(6.43) AS hasil_round;
-SELECT ROUND(5.4315, 3) AS hasil_round_3_desimal;
-SELECT SQRT(50) AS hasil_akar;
-SELECT TRUNCATE(1234.56789, 2) AS hasil_truncate;
+SELECT DISTINCT harga FROM buku;
 ```
 
 **Output:**
-- `ROUND(6.43)` = 6
-- `ROUND(5.4315, 3)` = 5.432
-- `SQRT(50)` = 7.0710678118654755
-- `TRUNCATE(1234.56789, 2)` = 1234.56
+```
++-------+
+| harga |
++-------+
+| 60000 |
+| 50000 |
+| 70000 |
+| 45000 |
+| 64000 |
+| 46000 |
++-------+
+```
 
 ---
 
-## g) Fungsi Agregat - COUNT
+## e) Menampilkan Data dengan Operator Aritmatika
 
-Menampilkan jumlah data record pada tabel buku:
+Ketik perintah berikut:
 
 ```sql
-SELECT COUNT(*) AS total_buku FROM buku;
+SELECT ABS(-90);
+SELECT ACOS(-0.90);
+SELECT ASIN(-0.90);
 ```
 
 **Output:**
-| total_buku |
-|------------|
-| 6          |
-
-Menampilkan jumlah buku dengan harga 60000:
-
 ```sql
-SELECT COUNT(*) AS jumlah FROM buku WHERE harga = 60000;
-```
+mysql> SELECT ABS(-90);
++----------+
+| ABS(-90) |
++----------+
+|       90 |
++----------+
+1 row in set (0.00 sec)
 
-**Output:**
-| jumlah |
-|--------|
-| 2      |
+mysql> SELECT ACOS(-0.90);
++---------------------+
+| ACOS(-0.90)         |
++---------------------+
+| 2.6905658417935308  |
++---------------------+
+1 row in set (0.05 sec)
+
+mysql> SELECT ASIN(-0.90);
++----------------------+
+| ASIN(-0.90)          |
++----------------------+
+| -1.1197695149986342  |
++----------------------+
+```
 
 ---
 
-## h) Fungsi Agregat - MAX, MIN, AVG
+## f) Menampilkan Data dengan Berbagai Operator Aritmatika
 
-Menampilkan nilai tertinggi, terendah, dan rata-rata harga buku:
+Ketik perintah berikut:
 
 ```sql
-SELECT 
-  MAX(harga) AS harga_tertinggi,
-  MIN(harga) AS harga_terendah,
-  AVG(harga) AS harga_rata_rata
-FROM buku;
+SELECT ATAN(10);
+SELECT ATAN2(5, 4);
+SELECT BIN(10);
+SELECT CEILING(6.123);
+SELECT CONV(5, 15, 4);
+SELECT COS(9);
+SELECT COT(9);
+SELECT DEGREES(5);
+SELECT MOD(15, 5);
+SELECT PI();
+SELECT RADIANS(150);
+SELECT EXP(9);
+SELECT FLOOR(8.98);
+SELECT FORMAT(12345.67, 4);
+SELECT GREATEST(9, 200, 344, 4, 3, 1);
+SELECT HEX(15);
+SELECT LEAST(15, 3, 0, 100, 355);
+SELECT LOG(10);
+SELECT LOG10(15);
+SELECT OCT(18);
+SELECT POW(5, 4);
+SELECT RAND(180);
+SELECT ROUND(6.43);
+SELECT RAND(10);
+SELECT ROUND(5.4315, 3);
+SELECT SIGN(-5.5637);
+SELECT SIN(300);
+SELECT SQRT(50);
+SELECT TAN(150);
+SELECT TRUNCATE(1234.56789, 2);
 ```
-
-**Output:**
-| harga_tertinggi | harga_terendah | harga_rata_rata |
-|-----------------|----------------|-----------------|
-| 60000           | 40000          | 51500           |
 
 ---
 
-## i) Fungsi Agregat - SUM
+## g) Menampilkan Data dengan Fungsi Agregat (COUNT)
 
-Menampilkan total seluruh harga:
+Ketik perintah berikut:
 
 ```sql
-SELECT SUM(harga) AS total_harga FROM buku;
+SELECT COUNT(*) FROM buku;
+SELECT COUNT(*) FROM buku WHERE harga = 60000;
 ```
 
 **Output:**
-| total_harga |
-|-------------|
-| 309000      |
+```sql
+mysql> SELECT COUNT(*) FROM buku;
++----------+
+| COUNT(*) |
++----------+
+|        8 |
++----------+
+
+mysql> SELECT COUNT(*) FROM buku WHERE harga = 60000;
++----------+
+| COUNT(*) |
++----------+
+|        2 |
++----------+
+```
 
 ---
 
-## j) Fungsi Agregat dengan Operasi Aritmatika
+## h) Menampilkan Fungsi Agregat untuk Nilai Tertinggi, Terendah dan Rata-rata
 
-Menampilkan total keseluruhan harga setelah harga buku dikalikan dengan stok:
+Ketik perintah berikut:
 
 ```sql
-SELECT SUM(harga * stok) AS total_nilai_stok FROM buku;
+SELECT MAX(harga) FROM buku;
+SELECT MIN(harga) FROM buku;
+SELECT AVG(harga) FROM buku;
 ```
 
 **Output:**
-| total_nilai_stok |
-|------------------|
-| 3390000          |
+```sql
+mysql> SELECT MAX(harga) FROM buku;
++------------+
+| MAX(harga) |
++------------+
+| 70000      |
++------------+
+
+mysql> SELECT MIN(harga) FROM buku;
++------------+
+| MIN(harga) |
++------------+
+| 45000      |
++------------+
+
+mysql> SELECT AVG(harga) FROM buku;
++------------+
+| AVG(harga) |
++------------+
+| 55625.0000 |
++------------+
+```
+
+---
+
+## i) Menampilkan Total Seluruh Harga dengan Fungsi SUM
+
+Ketik perintah berikut:
+
+```sql
+SELECT SUM(harga) FROM buku;
+```
+
+**Output:**
+```sql
+mysql> SELECT SUM(harga) FROM buku;
++------------+
+| SUM(harga) |
++------------+
+|     445000 |
++------------+
+```
+
+---
+
+## j) Menampilkan Total Keseluruhan Harga setelah Harga Dikalikan dengan Stok
+
+Ketik perintah berikut:
+
+```sql
+SELECT SUM(harga * stok) FROM buku;
+```
+
+**Output:**
+```sql
+mysql> SELECT SUM(harga * stok) FROM buku;
++-------------------+
+| SUM(harga * stok) |
++-------------------+
+|          11595000 |
++-------------------+
+```
 
 ---
 
 # TUGAS PENDAHULUAN
 
 1. **Jelaskan perbedaan operator aritmatika dengan operator pembanding!**  
-   - **Operator Aritmatika**: Digunakan untuk melakukan operasi matematika seperti penjumlahan (+), pengurangan (-), perkalian (*), dan pembagian (/).
+   - **Operator Aritmatika**: Digunakan untuk melakukan operasi matematis seperti penjumlahan (+), pengurangan (-), perkalian (*), dan pembagian (/).
    - **Operator Pembanding**: Digunakan untuk membandingkan nilai seperti sama dengan (=), lebih besar (>), lebih kecil (<), tidak sama dengan (!=).
 
 2. **Apa yang dimaksud dengan DISTINCT pada MySQL? Jelaskan dan contohkan!**  
-   DISTINCT digunakan untuk menghilangkan duplikasi data pada hasil query, hanya menampilkan data yang unik.  
-   Contoh: `SELECT DISTINCT jurusan FROM mahasiswa;` akan menampilkan setiap jurusan hanya satu kali.
+   DISTINCT digunakan untuk menghilangkan duplikasi data pada hasil query dan hanya menampilkan nilai yang unik. Contoh: `SELECT DISTINCT pengarang FROM buku;` akan menampilkan daftar pengarang tanpa duplikasi.
 
 3. **Mengapa user memerlukan tampilan data dengan fungsi DISTINCT?**  
-   Untuk mendapatkan daftar nilai unik tanpa duplikasi, misalnya untuk mengetahui jenis kategori atau kelompok yang ada dalam data.
+   Untuk mendapatkan informasi yang lebih ringkas dan menghindari redundansi data, terutama saat ingin melihat variasi nilai dalam suatu kolom tanpa pengulangan.
 
 4. **Apa yang dimaksud dengan Fungsi Agregat pada MySQL?**  
-   Fungsi agregat adalah fungsi yang melakukan perhitungan pada sekumpulan nilai dan mengembalikan satu nilai tunggal, seperti COUNT(), SUM(), AVG(), MAX(), MIN().
+   Fungsi agregat adalah fungsi yang digunakan untuk melakukan perhitungan pada sekelompok data dan menghasilkan satu nilai, seperti COUNT(), SUM(), AVG(), MAX(), dan MIN().
 
 5. **Untuk mengetahui jumlah data yang terdapat pada sebuah tabel menggunakan fungsi apa? Jelaskan!**  
-   Menggunakan fungsi `COUNT()`. Contoh: `SELECT COUNT(*) FROM nama_tabel;` akan menghitung total baris/record dalam tabel.
+   Menggunakan fungsi `COUNT(*)` yang akan menghitung semua baris dalam tabel. Contoh: `SELECT COUNT(*) FROM buku;` akan menampilkan total jumlah record dalam tabel buku.
 
 ---
 
 # TUGAS AKHIR
 
-**Kesimpulan:**  
-Praktikum ini membahas Data Manipulation Language (DML) tingkat lanjut dengan fokus pada penggunaan DISTINCT untuk menghilangkan duplikasi data, operator aritmatika untuk melakukan perhitungan matematis pada data, dan fungsi agregat (COUNT, SUM, AVG, MAX, MIN) untuk melakukan analisis statistik pada data. Kombinasi antara operator aritmatika dan fungsi agregat sangat berguna untuk menghasilkan laporan dan analisis data yang kompleks dalam database.
+**Kesimpulan Praktikum:**  
+Praktikum ini membahas Data Manipulation Language (DML) bagian 5 dengan fokus pada penggunaan DISTINCT untuk menghilangkan duplikasi data, operator aritmatika untuk perhitungan matematis, dan fungsi agregat untuk melakukan analisis statistik data. Melalui praktikum ini, mahasiswa dapat memahami cara mencari, menampilkan, dan menganalisis data dengan berbagai fungsi built-in MySQL yang berguna untuk pengolahan data yang lebih kompleks.
