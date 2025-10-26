@@ -1,5 +1,9 @@
 # TUGAS PRAKTIKUM – Pertemuan 5
 
+## Data Manipulation Language (Bagian-1)
+
+---
+
 ## a) Buat Struktur Database dan Tabel
 
 Ketik perintah berikut di MySQL:
@@ -126,4 +130,5 @@ INSERT INTO siswa VALUES (1,'Budi'),(2,'Ayu');
 ## TUGAS AKHIR
 
 **Kesimpulan Praktikum:**  
-Praktikum ini membahas penggunaan **Data Manipulation Language** (DML) pada SQL: membuat, memasukkan, memodifikasi, dan menghapus data dalam tabel basis data sesuai modul praktikum.
+
+##### Praktikum ini membahas penggunaan **Data Manipulation Language** (DML) pada SQL: membuat, memasukkan, memodifikasi, dan menghapus data dalam tabel basis data sesuai modul praktikum.

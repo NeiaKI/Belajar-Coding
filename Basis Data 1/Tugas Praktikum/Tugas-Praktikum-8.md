@@ -166,6 +166,8 @@ SELECT penerbit, COUNT(*) AS jumlah
 FROM buku 
 GROUP BY penerbit 
 HAVING COUNT(*) > 1;
+// atau lebih ringkasnya
+SELECT penerbit, COUNT(*) AS jumlah FROM buku GROUP BY Penerbit HAVING COUNT(*)>1;
 ```
 
 **Output:**
