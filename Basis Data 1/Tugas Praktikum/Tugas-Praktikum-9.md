@@ -11,7 +11,7 @@ Ketik perintah berikut di MySQL:
 CREATE DATABASE penjualan;
 USE penjualan;
 
-CREATE TABLE buku (
+CREATE TABLE buku_2 (
   isbn VARCHAR(15),
   judul CHAR(20),
   pengarang CHAR(30),
@@ -43,14 +43,14 @@ DESC buku;
 Ketik perintah berikut:
 
 ```sql
-INSERT INTO buku VALUES ('11231', 'Matematika Diskrit', 'Hanafi', '60000', '25');
-INSERT INTO buku VALUES ('11232', 'Pintar Java', 'Median', '50000', '20');
-INSERT INTO buku VALUES ('11233', 'Struktur Data', 'Andrianto', '70000', '15');
-INSERT INTO buku VALUES ('11234', 'Algoritma', 'SintaSari', '45000', '16');
-INSERT INTO buku VALUES ('11235', 'Kewarganegaraan', 'Ramdani', '64000', '22');
-INSERT INTO buku VALUES ('11236', 'Basisdata', 'Suginanto', '46000', '33');
-INSERT INTO buku VALUES ('11237', 'Sistem Berkas', 'Suginanto', '60000', '20');
-INSERT INTO buku VALUES ('11238', 'Web PHP', 'Median', '50000', '25');
+INSERT INTO buku_2 VALUES ('11231', 'Matematika Diskrit', 'Hanafi', '60000', '25');
+INSERT INTO buku_2 VALUES ('11232', 'Pintar Java', 'Median', '50000', '20');
+INSERT INTO buku_2 VALUES ('11233', 'Struktur Data', 'Andrianto', '70000', '15');
+INSERT INTO buku_2 VALUES ('11234', 'Algoritma', 'SintaSari', '45000', '16');
+INSERT INTO buku_2 VALUES ('11235', 'Kewarganegaraan', 'Ramdani', '64000', '22');
+INSERT INTO buku_2 VALUES ('11236', 'Basisdata', 'Suginanto', '46000', '33');
+INSERT INTO buku_2 VALUES ('11237', 'Sistem Berkas', 'Suginanto', '60000', '20');
+INSERT INTO buku_2 VALUES ('11238', 'Web PHP', 'Median', '50000', '25');
 ```
 
 **Data Tabel Buku:**
@@ -72,10 +72,11 @@ INSERT INTO buku VALUES ('11238', 'Web PHP', 'Median', '50000', '25');
 Ketik perintah berikut:
 
 ```sql
-SELECT DISTINCT pengarang FROM buku;
+SELECT DISTINCT pengarang FROM buku_2;
 ```
 
 **Output:**
+
 ```
 +------------+
 | pengarang  |
@@ -96,7 +97,7 @@ SELECT DISTINCT pengarang FROM buku;
 Ketik perintah berikut:
 
 ```sql
-SELECT DISTINCT harga FROM buku;
+SELECT DISTINCT harga FROM buku_2;
 ```
 
 **Output:**
@@ -197,7 +198,7 @@ SELECT TRUNCATE(1234.56789, 2);
 Ketik perintah berikut:
 
 ```sql
-SELECT COUNT(*) FROM buku;
+SELECT COUNT(*) FROM buku_2;
 SELECT COUNT(*) FROM buku WHERE harga = 60000;
 ```
 
@@ -225,9 +226,9 @@ mysql> SELECT COUNT(*) FROM buku WHERE harga = 60000;
 Ketik perintah berikut:
 
 ```sql
-SELECT MAX(harga) FROM buku;
-SELECT MIN(harga) FROM buku;
-SELECT AVG(harga) FROM buku;
+SELECT MAX(harga) FROM buku_2;
+SELECT MIN(harga) FROM buku_2;
+SELECT AVG(harga) FROM buku_2;
 ```
 
 **Output:**
@@ -261,7 +262,7 @@ mysql> SELECT AVG(harga) FROM buku;
 Ketik perintah berikut:
 
 ```sql
-SELECT SUM(harga) FROM buku;
+SELECT SUM(harga) FROM buku_2;
 ```
 
 **Output:**
@@ -281,10 +282,11 @@ mysql> SELECT SUM(harga) FROM buku;
 Ketik perintah berikut:
 
 ```sql
-SELECT SUM(harga * stok) FROM buku;
+SELECT SUM(harga * stok) FROM buku_2;
 ```
 
 **Output:**
+
 ```sql
 mysql> SELECT SUM(harga * stok) FROM buku;
 +-------------------+
